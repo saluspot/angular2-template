@@ -1,0 +1,16 @@
+<div class="container">
+	<form class="row">
+		<div class="input-field col s12">
+      <input id="task" type="text" class="validate" [(ngModel)]="task"/>
+      <label for="task">Escribe tu tarea</label>
+    </div>
+	</form>
+	<article class="row">
+		<div class="input-field col s12">
+    	<button (click)="addTask(task)" class="btn">Nueva tarea</button>
+    </div>
+	</article>
+	<article class="row">
+		<todo-list [tasks]="tasks"></todo-list>
+	</article>
+</div>

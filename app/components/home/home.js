@@ -1,4 +1,4 @@
-System.register(["@angular/core"], function(exports_1, context_1) {
+System.register(["@angular/core", "../todoList/todoList"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,21 +10,36 @@ System.register(["@angular/core"], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, todoList_1;
     var Home;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (todoList_1_1) {
+                todoList_1 = todoList_1_1;
             }],
         execute: function() {
             Home = (function () {
                 function Home() {
+                    this.tasks = [];
                 }
+                Home.prototype.addTask = function (task) {
+                    if (task) {
+                        this.tasks.push({ todo: task, done: false });
+                        this.task = null;
+                        setTimeout(function () {
+                            window.Materialize.updateTextFields();
+                            document.querySelector("form").reset();
+                        }, 100);
+                    }
+                };
                 Home = __decorate([
                     core_1.Component({
                         selector: "app",
-                        template: "\n  <h1>Mi app</h1>\n\n  ",
+                        templateUrl: "./app/components/home/home.html",
+                        directives: [todoList_1.TodoList]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], Home);
